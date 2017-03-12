@@ -4,10 +4,10 @@ var fs = require("fs");
 http.createServer(function(request, response) {
 
 	if(request.url === "/"){
-		sendFileContent(response, "index.html", "text/html");
+		sendFileContent(response, "Index.html", "text/html");
 	}
 	else if(request.url === "/index"){
-		sendFileContent(response, "index.html", "text/html");
+		sendFileContent(response, "Index.html", "text/html");
 	}
 	else if(/^\/[a-zA-Z0-9\/]*.js$/.test(request.url.toString())){
 		sendFileContent(response, request.url.toString().substring(1), "text/javascript");
