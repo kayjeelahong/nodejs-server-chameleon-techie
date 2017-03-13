@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+
+<!-- define angular app -->
+<html ng-app='app'>
+
+<head>
+  <!-- SCROLLS -->
+
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.10.0.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<!-- define angular controller -->
+
+<body >
+
+<div class='wrap' ng-app='app'>
+  <div class='time-to'>
+ 
+<li><a href="https://www.linkedin.com/in/kagiso-sebogodi-278a7994><i class="fa fa-comment"></i>connect on linkedin</a></li>
+ <li><a href="https://twitter.com/kayjee_lahong"><i class="fa fa-shield"></i> follow or go misssing on twitter!!</a></li>
+
+   <h1>we thank you for your patience will have some goodies for you in </h1>
+
+    <span countdown='' date='January 1, 2017 12:00:00'>&nbsp;</span>
+  </div>
+</div>
+	<style>
+	@import "//fonts.googleapis.com/css?family=Bangers";
+body {
+  margin: 0;
+}
+
+.wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100vh;
+  background: black;
+}
+
+.time-to {
+  text-align: center;
+  font-family: Bangers;
+  color: white;
+  font-size: 35px;
+  letter-spacing: 2px;
+}
+.time-to span {
+  display: block;
+  font-size: 80px;
+  color: red;
+}
+	</style>
+	<script>
+	(function() {
+  angular.module('app', []).directive('countdown', [
+    'Util', '$interval', function(Util, $interval) {
+      return {
+        restrict: 'A',
+        scope: {
+          date: '@'
+        },
+        link: function(scope, element) {
+          var future;
+          future = new Date(scope.date);
+          $interval(function() {
+            var diff;
+            diff = Math.floor((future.getTime() - new Date().getTime()) / 1000);
+            return element.text(Util.dhms(diff));
+          }, 1000);
+        }
+      };
+    }
+  ]).factory('Util', [
+    function() {
+      return {
+        dhms: function(t) {
+          var days, hours, minutes, seconds;
+          days = Math.floor(t / 86400);
+          t -= days * 86400;
+          hours = Math.floor(t / 3600) % 24;
+          t -= hours * 3600;
+          minutes = Math.floor(t / 60) % 60;
+          t -= minutes * 60;
+          seconds = t % 60;
+          return [days + 'd', hours + 'h', minutes + 'm', seconds + 's'].join(' ');
+        }
+      };
+    }
+  ]);
+
+}).call(this);
+
+	</script>
+</body>
+</html>
